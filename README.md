@@ -8,7 +8,7 @@ Table Of Contents:
     - [Terminal - Useful Terminal Commands](https://github.com/djangothesolarboy/Useful-Cmds#useful-terminal-commands)
     - [Terminal - Grep Commands](https://github.com/djangothesolarboy/Useful-Cmds#grep-commands)
     - [Terminal - Misc](https://github.com/djangothesolarboy/Useful-Cmds#misc)
-- [Git Commands && Github](https://github.com/djangothesolarboy/Useful-Cmds#git-commands-&&-github)
+- [Git Commands && Github](https://github.com/djangothesolarboy/Useful-Cmds#git-commands--github)
     - [Github - Setting Up Github](https://github.com/djangothesolarboy/Useful-Cmds#setting-up-github)
     - [Github - Useful Commands](https://github.com/djangothesolarboy/Useful-Cmds#useful-commands)
     - [Github - Branch Forcing](https://github.com/djangothesolarboy/Useful-Cmds#branch-forcing)
