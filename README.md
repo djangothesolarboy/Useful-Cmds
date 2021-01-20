@@ -13,12 +13,16 @@ Table Of Contents:
     - [Github - Useful Commands](https://github.com/djangothesolarboy/Useful-Cmds#useful-commands)
     - [Github - Branch Forcing](https://github.com/djangothesolarboy/Useful-Cmds#branch-forcing)
     - [Github - Basic Git Flow](https://github.com/djangothesolarboy/Useful-Cmds#basic-git-flow)
-- [Heroku Commands](https://github.com/djangothesolarboy/Heroku-Things#heroku)
-    - [Heroku - Environment variables setup](https://github.com/djangothesolarboy/Heroku-Things#environment-variables-setup)
-    - [Heroku - Configuring Heroku to use Postgres database](https://github.com/djangothesolarboy/Heroku-Things#configuring-heroku-to-use-postgres-database)
-    - [Heroku - Pushing to Heroku for first time](https://github.com/djangothesolarboy/Heroku-Things#pushing-to-heroku-for-first-time)
-    - [Heroku - Migrations with Heroku](https://github.com/djangothesolarboy/Heroku-Things#migrations-with-heroku)
-    - [Heroku - In case of rollback](https://github.com/djangothesolarboy/Heroku-Things#in-case-of-rollback)  
+- [Heroku Commands](https://github.com/djangothesolarboy/Useful-Cmds#heroku)
+    - [Heroku - Environment variables setup](https://github.com/djangothesolarboy/Useful-Cmds#environment-variables-setup)
+    - [Heroku - Configuring Heroku to use Postgres database](https://github.com/djangothesolarboy/Useful-Cmds#configuring-heroku-to-use-postgres-database)
+    - [Heroku - Pushing to Heroku for first time](https://github.com/djangothesolarboy/Useful-Cmds#pushing-to-heroku-for-first-time)
+    - [Heroku - Migrations with Heroku](https://github.com/djangothesolarboy/Useful-Cmds#migrations-with-heroku)
+    - [Heroku - In case of rollback](https://github.com/djangothesolarboy/Useful-Cmds#in-case-of-rollback)  
+- [Docker](https://github.com/djangothesolarboy/Useful-Cmds#docker)
+    - [Docker - Basic Commands](https://github.com/djangothesolarboy/Useful-Cmds#basic-commands)
+    - [Docker - Docker Networks](https://github.com/djangothesolarboy/Useful-Cmds#docker-networks)
+    - [Docker - Docker Volumes](https://github.com/djangothesolarboy/Useful-Cmds#docker-volumes)
 
 # Terminal Commands
 Useful Terminal Commands
@@ -153,12 +157,49 @@ Pushing to Heroku for first time:
 
 Migrations with Heroku:
 ---
-- Migrate -> ```heroku run npx sequelize-cli db:migrate```
-- Seeding -> ```heroku run npx sequelize-cli db:migrate```
+- Migrate -> ```heroku run npm sequelize-cli db:migrate```
+- Seeding -> ```heroku run npm sequelize-cli db:seed:all```
 
 In case of rollback:
 ---
-- Undo seed -> ```heroku run npx sequelize-cli db:seed:undo:all```
-- Undo migration -> ```heroku run npx sequelize-cli db:migrate:undo:all```
-- Re-migrate -> ```heroku run npx sequelize-cli db:migrate```
-- Re-seed -> ```heroku run npx sequelize-cli db:seed:all```
+- Undo seed -> ```heroku run npm sequelize-cli db:seed:undo:all```
+- Undo migration -> ```heroku run npm sequelize-cli db:migrate:undo:all```
+- Re-migrate -> ```heroku run npm sequelize-cli db:migrate```
+- Re-seed -> ```heroku run npm sequelize-cli db:seed:all```
+
+
+# Docker
+
+Basic Commands:
+---
+- `--name container-name`: names the container
+- `-p 80:80`: runs the container on published port 80
+- `-d -p 80:80`: runs the container on port 80 in the background
+- `docker container ls`: running containers
+- `docker container ls -a`: **all** running containers
+- `docker container rm container-name`: removes container(can use container name or container id)
+- `docker container stop container-name`: stops the container from running
+- `docker container start container-name`: starts the container
+- `docker container inspect container-name`: information about container, has status, port, etc
+- `docker container stats`: information about resources containers are using(that are running on docker machine)
+- `docker container top container-name`: displays current processes container is running
+
+
+Docker Networks:
+---
+- `docker network ls`: lists networks running
+- `docker network create network-name`: creates a network with a name
+- `docker container run --name container-name -d --net network-name nginx:alpine`: creates a container on the network specified in the background (alpine is a specific version of nginx that has ping installed)
+- `docker container run -p 80:80 -d --name container-name --mount type=bind,source="$(pwd),target="/usr/share/nginx/html" nginx`: points to physical spot in your computer
+	- `--mount type=bind`: binding local file to container
+	- `source="$(pwd)"`: says the source is the current directory
+	- `target="/usr/share/nginx/html"`: is location where html file is located on container
+- `docker container exec -it nginx bash`: opens up bash in container
+
+Docker Volumes:
+---
+- `docker container run -d --name container-name -e MYSQL_ALLOW_EMPTY_PASSWORD=true --mount source="volume-name",target="/volume-name" nginx`: 
+	- `-e`: flag is an environment variable
+	- `MYSQL_ALLOW_EMPTY_PASSWORD=true`: tells it not to configure a password
+	- `--mount source="volume-name"`: tells the name of the volume to use
+- `docker volume rm volume-name`: removes volume
