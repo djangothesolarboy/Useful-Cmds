@@ -172,9 +172,10 @@ In case of rollback:
 
 Basic Commands:
 ---
+- `docker -v`: displays version number
 - `--name container-name`: names the container
 - `-p 80:80`: runs the container on published port 80
-- `-d -p 80:80`: runs the container on port 80 in the background
+- `-d -p 80:80`: runs the container on port 80 in the background(`-d` means detach)
 - `docker container ls`: running containers
 - `docker container ls -a`: **all** running containers
 - `docker container rm container-name`: removes container(can use container name or container id)
@@ -195,11 +196,18 @@ Docker Networks:
 	- `source="$(pwd)"`: says the source is the current directory
 	- `target="/usr/share/nginx/html"`: is location where html file is located on container
 - `docker container exec -it nginx bash`: opens up bash in container
+    - `-t`: simulates a terminal (like SSH)
+    - `-i`: keeps a session open to receive terminal input
+- `docker container run -d --net network-name --net-alias network-alias`:
+    - `-net network-name`: specifies the network name
+    - `--net-alias network-alias`: alias the network like `localhost` is `127.0.01`
+- `docker container run --net network-name alpine nslookup network-alias`: `nslookup` returns any ip address it finds on the specified network alias and the name of the network
 
+  
 Docker Volumes:
 ---
-- `docker container run -d --name container-name -e MYSQL_ALLOW_EMPTY_PASSWORD=true --mount source="volume-name",target="/volume-name" nginx`: 
+- `docker container run -d --name container-name -e MYSQL_ALLOW_ROOT_PASSWORD=true --mount source="volume-name",target="/volume-name" nginx`: 
 	- `-e`: flag is an environment variable
-	- `MYSQL_ALLOW_EMPTY_PASSWORD=true`: tells it not to configure a password
+	- `MYSQL_ALLOW_ROOT_PASSWORD=true`: tells it not to configure a password
 	- `--mount source="volume-name"`: tells the name of the volume to use
 - `docker volume rm volume-name`: removes volume
