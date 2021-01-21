@@ -23,6 +23,8 @@ Table Of Contents:
     - [Docker - Basic Commands](https://github.com/djangothesolarboy/Useful-Cmds#basic-commands)
     - [Docker - Docker Networks](https://github.com/djangothesolarboy/Useful-Cmds#docker-networks)
     - [Docker - Docker Volumes](https://github.com/djangothesolarboy/Useful-Cmds#docker-volumes)
+    - [Docker - Docker Images](https://github.com/djangothesolarboy/Useful-Cmds#docker-images)
+    - [Docker - Dockerfile](https://github.com/djangothesolarboy/Useful-Cmds#dockerfile)
 
 # Terminal Commands
 Useful Terminal Commands
@@ -211,3 +213,28 @@ Docker Volumes:
 	- `MYSQL_ALLOW_ROOT_PASSWORD=true`: tells it not to configure a password
 	- `--mount source="volume-name"`: tells the name of the volume to use
 - `docker volume rm volume-name`: removes volume
+
+
+
+Docker Images:
+---
+- `docker image ls`: lists all the images on your computer
+- `docker image tag image-name username/image-name:tag-name`: will change the tag of an image specified
+- `docker image inspect image-name`: will inspect image specified and displays information
+- `docker image history image-name`: displays the layers that make-up the image
+
+
+Dockerfile:
+---
+- `docker build . -t image-name:tag-name`: builds an image from a Dockerfile
+    - `.`: says current directory
+    - `-t`: allows a named tag you specify
+- `docker build . -f /path/to/a/Dockerfile`: builds an image from a Dockerfile in specified directory
+    - `-f`: flag that builds image from a different directory
+- `FROM node:15-alpine3.12`: builds off node image
+- `EXPOSE 3000`: creates a port on `3000`
+- `WORKDIR /app`: creates working directory `/app` if it does not exist
+- `COPY package*.json index.html ./`: copies `package*.json` & `index.html` into `/app`
+- `RUN npm install`: runs npm install inside image
+- `COPY . .`: copies everything in current directory from `.`(current directory locally) to `.`(image)
+- `CMD ["npm", "start"]`: runs `npm start`
